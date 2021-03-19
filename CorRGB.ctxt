@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=CorRGB
+comment1.params=red\ green\ blue
+comment1.target=CorRGB(int,\ int,\ int)
+comment2.params=
+comment2.target=int\ getValorRed()
+comment3.params=valorRed
+comment3.target=void\ setValorRed(int)
+comment4.params=
+comment4.target=int\ getValorGreen()
+comment5.params=valorGreen
+comment5.target=void\ setValorGreen(int)
+comment6.params=
+comment6.target=int\ getValorBlue()
+comment7.params=valorBlue
+comment7.target=void\ setValorBlue(int)
+comment8.params=
+comment8.target=java.lang.String\ toString()
+numComments=9
