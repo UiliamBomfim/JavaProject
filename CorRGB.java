@@ -21,9 +21,18 @@ class CorRGB
         }
 
     }
-
-     //CorRGB(){}
-     //CorRGB(Cor preta){}
+    
+    //CorPreta
+    // CorRGB(){   }
+    
+    //Copia
+    CorRGB(CorRGB x){
+         
+       this.setValorRed(x.getValorRed());
+       this.setValorGreen(x.getValorGreen());
+       this.setValorBlue(x.getValorBlue());
+         
+    }
 
 
 
@@ -51,7 +60,7 @@ class CorRGB
         this.valorBlue = valorBlue;
     }
 
-    //public double getLuminosidade(){    }
+    //public double getLuminosidade(){  }
 
    
 
@@ -67,7 +76,7 @@ class CorRGB
         }
 
 
-    //linhateste
+ 
 
 }
 
