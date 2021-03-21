@@ -3,12 +3,12 @@ class CorRGB
     private int valorRed;
     private int valorGreen;
     private int valorBlue;
-
     
-
     //construtor cor RGB
-    CorRGB(int red, int green, int blue){
-        try {
+    CorRGB(int red, int green, int blue)
+    {
+        try 
+        {
             if (red <= 0 || red >= 255 || green <= 0 || green >= 255 || blue <= 0 || blue >= 255  )
 
                 throw new Exception("Número inválido");
@@ -23,7 +23,12 @@ class CorRGB
     }
     
     //CorPreta
-    // CorRGB(){   }
+    CorRGB()
+    {
+       this.setValorRed(0);
+       this.setValorGreen(0);
+       this.setValorBlue(0);
+    }
     
     //Copia
     CorRGB(CorRGB x){
