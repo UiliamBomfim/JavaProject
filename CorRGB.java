@@ -90,7 +90,53 @@ class CorRGB
         } else
             return false;
     }
+    
+    private String conversorHexadecimal(int number) {
 
+        String [] vetorDeHexa = new String [3];
+        int x =0;
+
+        do {
+            if (number % 16 < 10) {
+                vetorDeHexa[x]= String.valueOf((number % 16));
+
+            } else {
+                switch (number % 16) {
+                    case 10:
+                        vetorDeHexa[x]= "A";
+                        break;
+                    case 11:
+                        vetorDeHexa[x]= "B";
+                        break;
+                    case 12:
+                        vetorDeHexa[x]= "C";
+                        break;
+                    case 13:
+                        vetorDeHexa[x]= "D";
+                        break;
+                    case 14:
+                      vetorDeHexa[x]= "E";
+                        break;
+                    case 15:
+                      vetorDeHexa[x]= "F";
+                }
+            }
+            number = (int) number / 16;
+            x++;
+        } while (number != 0);
+            String s= "";
+            s += vetorDeHexa[1]+vetorDeHexa[0];
+        return s;
+    }
+
+    public String CorRGBHexadecimal(){
+        String r= "RGB em Hexa: #";
+        r += this.conversorHexadecimal(getValorRed()) +
+        this.conversorHexadecimal(getValorGreen())+
+        this.conversorHexadecimal(getValorBlue());
+
+        return r;
+    }
 
     @Override
     public String toString(){
