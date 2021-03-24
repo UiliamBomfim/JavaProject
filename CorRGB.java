@@ -1,14 +1,11 @@
 class CorRGB
 {
-    public final int valorRed = 0 ;
-    public final int valorGreen = 1;
-    public final int valorBlue = 2;
-    public final int lum = 0;
+    private int valorRed;
+    private int valorGreen;
+    private int valorBlue;
+    private double valorLuminosidade;
     
-    int [] vetorDeCores = new int [3];
-    double []vetorLuminosidade = new double[1];
-
-
+    
     //construtor cor RGB
     CorRGB(int red, int green, int blue)
     {
@@ -21,7 +18,7 @@ class CorRGB
                 this.setValorRed(red);
                 this.setValorGreen(green);
                 this.setValorBlue(blue);
-                vetorLuminosidade[lum] = ((red*0.3) + (green*0.59) + (blue *0.11) / 255);
+                this.setLuminosidade();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,7 +32,7 @@ class CorRGB
         this.setValorRed(0);
         this.setValorGreen(0);
         this.setValorBlue(0);
-        this.vetorLuminosidade[0]= 0;
+        this.setLuminosidade();
     }
 
     //Copia
@@ -44,41 +41,74 @@ class CorRGB
         this.setValorRed(x.getValorRed());
         this.setValorGreen(x.getValorGreen());
         this.setValorBlue(x.getValorBlue());
-        this.vetorLuminosidade[0]= x.getLuminosidade();
+        this.setLuminosidade(); 
 
     }
 
 
 
     public int getValorRed() {
-        return vetorDeCores[valorRed];
+        return valorRed;
     }
 
-    public void setValorRed(int red) {
-        vetorDeCores[valorRed] = red;
+    private void setValorRed(int valorRed) 
+    {
+        if(valorRed >= 255)
+        {this.valorRed = 255;}
+        else
+        {
+            if(valorRed < 0)
+            {this.valorRed = 0;}
+            else
+            {this.valorRed = valorRed;}
+        }
+        this.setLuminosidade();
     }
-
+    
     public int getValorGreen() {
-        return vetorDeCores[valorGreen];
+        return valorGreen;
     }
 
-    public void setValorGreen(int green) {
-        vetorDeCores[valorGreen] = green;
+    private void setValorGreen(int valorGreen) {
+        if(valorGreen >= 255)
+        {this.valorGreen = 255;}
+        else
+        {
+            if(valorGreen < 0)
+            {this.valorGreen = 0;}
+            else
+            {this.valorGreen = valorGreen;}
+        }
+        this.setLuminosidade();
     }
+
 
     public int getValorBlue() {
-        return vetorDeCores[valorBlue];
+        return valorBlue;
     }
 
-    public void setValorBlue(int blue) {
-         vetorDeCores[valorBlue] = blue;
+    private void setValorBlue(int valorBlue) {
+        if(valorBlue >= 255)
+        {this.valorBlue = 255;}
+        else
+        {
+            if(valorBlue < 0)
+            {this.valorBlue = 0;}
+            else
+            {this.valorBlue = valorBlue;}
+        }
+        this.setLuminosidade();
     }
 
     public double getLuminosidade(){
        
-        return vetorLuminosidade[0];
+        return valorLuminosidade;
     }
-
+    
+    private void setLuminosidade(){
+        
+    }
+    
     public boolean setIgualdadeCores(CorRGB x) {
 
 
@@ -102,23 +132,17 @@ class CorRGB
 
             } else {
                 switch (number % 16) {
-                    case 10:
-                        vetorDeHexa[x]= "A";
+                    case 10: vetorDeHexa[x]= "A";
                         break;
-                    case 11:
-                        vetorDeHexa[x]= "B";
+                    case 11: vetorDeHexa[x]= "B";
                         break;
-                    case 12:
-                        vetorDeHexa[x]= "C";
+                    case 12: vetorDeHexa[x]= "C";
                         break;
-                    case 13:
-                        vetorDeHexa[x]= "D";
+                    case 13: vetorDeHexa[x]= "D";
                         break;
-                    case 14:
-                      vetorDeHexa[x]= "E";
+                    case 14: vetorDeHexa[x]= "E";
                         break;
-                    case 15:
-                      vetorDeHexa[x]= "F";
+                    case 15: vetorDeHexa[x]= "F";
                 }
             }
             number = (int) number / 16;
@@ -143,10 +167,10 @@ class CorRGB
         String s = "";
 
 
-        s +=    "valor de vermelho: "+ vetorDeCores[0]+"\n"+
-                "valor de verde: "+ vetorDeCores[1] +"\n"+
-                "valor de azul: " + vetorDeCores[2] +"\n"+
-                "Luminosidade: " + vetorLuminosidade[0] +"\n";
+        s +=    "valor de vermelho: "+ this.valorRed +"\n"+
+                "valor de verde: "+ this.valorGreen +"\n"+
+                "valor de azul: " + this.valorBlue +"\n"+
+                "Luminosidade: " + this.valorLuminosidade +"\n";
         return s;
     }
 
