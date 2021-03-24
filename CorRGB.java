@@ -100,49 +100,48 @@ class CorRGB
         this.setLuminosidade();
     }
 
-    public double getLuminosidade(){
-       
+    public double getLuminosidade()
+    {
         return valorLuminosidade;
     }
     
-    private void setLuminosidade(){
-        
+    private void setLuminosidade()
+    {
+        this.valorLuminosidade = (this.getValorRed()*0.3 + this.getValorGreen()*0.59 + this.getValorBlue()*0.11) / 255;
     }
     
-    public boolean setIgualdadeCores(CorRGB x) {
-
-
+    public CorRGB clonar()
+    {
+        CorRGB clone = new CorRGB(this.getValorRed(),this.getValorGreen(),this.getValorBlue());
+        return clone;
+    }
+    
+    public boolean setIgualdadeCores(CorRGB x) 
+    {
         if (this.getValorRed() == x.getValorRed() &&
-                this.getValorGreen() == x.getValorGreen() &&
-                this.getValorBlue() == x.getValorBlue()) {
-
-            return true;
-        } else
-            return false;
+            this.getValorGreen() == x.getValorGreen() &&
+            this.getValorBlue() == x.getValorBlue()) 
+        {return true;}
+        else
+        {return false;}
     }
     
     private String conversorHexadecimal(int number) {
 
         String [] vetorDeHexa = new String [3];
         int x =0;
-
         do {
             if (number % 16 < 10) {
                 vetorDeHexa[x]= String.valueOf((number % 16));
 
             } else {
                 switch (number % 16) {
-                    case 10: vetorDeHexa[x]= "A";
-                        break;
-                    case 11: vetorDeHexa[x]= "B";
-                        break;
-                    case 12: vetorDeHexa[x]= "C";
-                        break;
-                    case 13: vetorDeHexa[x]= "D";
-                        break;
-                    case 14: vetorDeHexa[x]= "E";
-                        break;
-                    case 15: vetorDeHexa[x]= "F";
+                    case 10: vetorDeHexa[x]= "A";break;
+                    case 11: vetorDeHexa[x]= "B";break;
+                    case 12: vetorDeHexa[x]= "C";break;
+                    case 13: vetorDeHexa[x]= "D";break;
+                    case 14: vetorDeHexa[x]= "E";break;
+                    case 15: vetorDeHexa[x]= "F";break;
                 }
             }
             number = (int) number / 16;
@@ -161,7 +160,21 @@ class CorRGB
 
         return r;
     }
-
+    
+    public void clarear(float percentual)
+    {
+        setValorRed(getValorRed() + (int)(getValorRed()*percentual));
+        setValorGreen(getValorGreen() + (int)(getValorGreen()*percentual));
+        setValorBlue(getValorBlue() + (int)(getValorBlue()*percentual));
+    }
+    
+    public void escurecer(float percentual)
+    {
+        setValorRed(getValorRed() - (int)(getValorRed()*percentual));
+        setValorGreen(getValorGreen() - (int)(getValorGreen()*percentual));
+        setValorBlue(getValorBlue() - (int)(getValorBlue()*percentual));
+    }
+    
     @Override
     public String toString(){
         String s = "";
@@ -173,9 +186,5 @@ class CorRGB
                 "Luminosidade: " + this.valorLuminosidade +"\n";
         return s;
     }
-
-
-
-
 }
 
