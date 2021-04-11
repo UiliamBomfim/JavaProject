@@ -132,32 +132,39 @@ class CorRGB
         {return false;}
     }
     
-    private String conversorHexadecimal(int number) {
+     private String conversorHexadecimal(int valor) {
 
-        String [] vetorDeHexa = new String [3];
-        int x =0;
-        do {
-            if (number % 16 < 10) {
-                vetorDeHexa[x]= String.valueOf((number % 16));
+        int dezenaHexa;
+        int unidadeHexa;
+        String dezenaHexaStr = "";
+        String unidadeHexaStr = "";
 
-            } else {
-                switch (number % 16) {
-                    case 10: vetorDeHexa[x]= "A";break;
-                    case 11: vetorDeHexa[x]= "B";break;
-                    case 12: vetorDeHexa[x]= "C";break;
-                    case 13: vetorDeHexa[x]= "D";break;
-                    case 14: vetorDeHexa[x]= "E";break;
-                    case 15: vetorDeHexa[x]= "F";break;
-                }
-            }
-            number = (int) number / 16;
-            x++;
-        } while (number != 0);
-            String s= "";
-            s += vetorDeHexa[1]+vetorDeHexa[0];
-        return s;
+        dezenaHexa = (int) valor/16;
+        unidadeHexa = (int) ((valor/16.0 - dezenaHexa) * 16.0);
+
+        switch(unidadeHexa)
+        {
+            case 10: unidadeHexaStr = "A";break;
+            case 11: unidadeHexaStr = "B";break;
+            case 12: unidadeHexaStr = "C";break;
+            case 13: unidadeHexaStr = "D";break;
+            case 14: unidadeHexaStr = "E";break;
+            case 15: unidadeHexaStr = "F";break;
+            default: unidadeHexaStr = "" + unidadeHexa;
+        }
+        switch(dezenaHexa)
+        {
+            case 10: dezenaHexaStr = "A";break;
+            case 11: dezenaHexaStr = "B";break;
+            case 12: dezenaHexaStr = "C";break;
+            case 13: dezenaHexaStr = "D";break;
+            case 14: dezenaHexaStr = "E";break;
+            case 15: dezenaHexaStr = "F";break;
+            default: dezenaHexaStr = "" + dezenaHexa;
+        }
+        return dezenaHexaStr + unidadeHexaStr;
     }
-
+    
     public String corRGBHexadecimal(){
         String r= "RGB em Hexa: #";
         r += this.conversorHexadecimal(getValorRed()) +
