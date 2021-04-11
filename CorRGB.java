@@ -5,6 +5,12 @@ class CorRGB
     private int valorBlue;
     private double valorLuminosidade;
     
+    public static final String preto = "#000000";
+    public static final String branca = "#FFFFFF";
+    public static final String red = "#FF0000";
+    public static final String green = "#00FF00";
+    public static final String blue = "#0000FF";
+    
     
     //construtor cor RGB
     CorRGB(int red, int green, int blue)
@@ -107,7 +113,7 @@ class CorRGB
     
     private void setLuminosidade()
     {
-        this.valorLuminosidade = (this.getValorRed()*0.3 + this.getValorGreen()*0.59 + this.getValorBlue()*0.11) / 255;
+        this.valorLuminosidade = (this.getValorRed()*0.3 + this.getValorGreen()*0.59 + this.getValorBlue()*0.11);
     }
     
     public CorRGB clonar()
@@ -152,7 +158,7 @@ class CorRGB
         return s;
     }
 
-    public String CorRGBHexadecimal(){
+    public String corRGBHexadecimal(){
         String r= "RGB em Hexa: #";
         r += this.conversorHexadecimal(getValorRed()) +
         this.conversorHexadecimal(getValorGreen())+
@@ -175,6 +181,17 @@ class CorRGB
         setValorBlue(getValorBlue() - (int)(getValorBlue()*percentual));
     }
     
+    public String corCinza()
+    {
+        int x = (int) (getValorRed() * 0.3+ getValorGreen()*0.59+ getValorBlue()*0.11);
+
+
+        String r = "#"+ conversorHexadecimal(x)+ conversorHexadecimal(x)+ conversorHexadecimal(x);
+        return r;
+    }
+
+    
+    
     @Override
     public String toString(){
         String s = "";
@@ -183,7 +200,9 @@ class CorRGB
         s +=    "valor de vermelho: "+ this.valorRed +"\n"+
                 "valor de verde: "+ this.valorGreen +"\n"+
                 "valor de azul: " + this.valorBlue +"\n"+
-                "Luminosidade: " + this.valorLuminosidade +"\n";
+                "Luminosidade: " + this.valorLuminosidade +"\n"+
+                "Escala de Cinza: "+ corCinza() +"\n"+
+                "Cor em Hexa: " + corRGBHexadecimal()+"\n";;
         return s;
     }
 }
