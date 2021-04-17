@@ -5,11 +5,11 @@ class CorRGB
     private int valorBlue;
     private double valorLuminosidade;
     
-    public static final String preto = "#000000";
-    public static final String branca = "#FFFFFF";
-    public static final String red = "#FF0000";
-    public static final String green = "#00FF00";
-    public static final String blue = "#0000FF";
+    public static final CorRGB preto = new CorRGB(0,0,0);;
+    public static final CorRGB branca = new CorRGB(255,255,255);
+    public static final CorRGB red = new CorRGB(255,0,0);
+    public static final CorRGB green = new CorRGB(0,255,0);
+    public static final CorRGB blue = new CorRGB(0,0,255);
     
     
     //construtor cor RGB
@@ -57,7 +57,7 @@ class CorRGB
         return valorRed;
     }
 
-    private void setValorRed(int valorRed) 
+    protected void setValorRed(int valorRed) 
     {
         if(valorRed >= 255)
         {this.valorRed = 255;}
@@ -75,7 +75,7 @@ class CorRGB
         return valorGreen;
     }
 
-    private void setValorGreen(int valorGreen) {
+    protected void setValorGreen(int valorGreen) {
         if(valorGreen >= 255)
         {this.valorGreen = 255;}
         else
@@ -93,7 +93,7 @@ class CorRGB
         return valorBlue;
     }
 
-    private void setValorBlue(int valorBlue) {
+    protected void setValorBlue(int valorBlue) {
         if(valorBlue >= 255)
         {this.valorBlue = 255;}
         else
