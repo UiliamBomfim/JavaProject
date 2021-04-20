@@ -38,24 +38,30 @@ public class Imagem {
     {
         String s = "";
 
-        for(int k=0; k<pixels.length; k++)
+        for(int k=0; k<this.pixels.length; k++)
         {
-            for(int w=0; w<pixels[k].length; w++)
+            for(int w=0; w<this.pixels[k].length; w++)
             {
 
-                s += pixels[k][w];
+                s += this.pixels[k][w];
 
             }
         }
             return s;
     }
+    
+     public void setModificaPixel(int x, int y, CorRGB k)
+    {
 
+        this.pixels[x][y] = k;
+    }
+    
     public void setModificaPixels(int x, int y, int a, int b, int c)
     {
     
-                        this.pixels[x][y].setValorRed(a);
-                        this.pixels[x][y].setValorGreen(b);
-                        this.pixels[x][y].setValorBlue(c);
+           this.pixels[x][y].setValorRed(a);
+           this.pixels[x][y].setValorGreen(b);
+           this.pixels[x][y].setValorBlue(c);
     
     }
     
@@ -78,23 +84,22 @@ public class Imagem {
                 return imagem;
     }
     
-     public void verificarIgualdadeImagem(Imagem x)
+     public boolean verificarIgualdadeImagem(Imagem x)
     {
           if(Arrays.deepEquals(this.pixels, x.pixels))
           {
-              System.out.println("sao iguais");
+              return true;
           }
           else
           {
-              System.out.println("sao diferentes");
+              return false;
           }
     }
     
-    public void rotacionar()
+    private void rotacionar()
     {
         CorRGB[][] pixelsAuxiliar = new CorRGB[this.pixels[0].length][this.pixels.length];
-        int alturaAuxiliar = this.getLargura();
-        int larguraAuxiliar = this.getAltura(); 
+   
         int cont1Largura, cont1Altura, cont2Largura, cont2Altura;
         for(cont1Altura = 0, cont2Largura = this.getAltura() - 1;cont1Altura < this.getAltura();cont1Altura++,cont2Largura--)
         {
@@ -123,6 +128,10 @@ public class Imagem {
     
     public boolean isFragmento(Imagem outraImagem)
     {
+        if(outraImagem.getAltura()==1&&outraImagem.getLargura()==1)
+        {System.out.println("este tamanho nao configura uma imagem");
+            return false;}
+        
         if(outraImagem.getAltura() <= this.getAltura() && outraImagem.getLargura() <= this.getLargura())
         {
             for(int cont = 0;cont < 4; cont++)
@@ -141,6 +150,23 @@ public class Imagem {
             }
         }
         return false;
+    }
+    
+      public String toString() {
+        String s = "";
+
+        for(int k=0; k<pixels.length; k++)
+        {
+            for(int w=0; w<pixels[k].length; w++)
+            {
+                if(w==0)
+                { s += "\n"+ pixels[k][w];}
+                else
+                { s += pixels[k][w];}
+            }
+        }
+
+        return s;
     }
     
 }

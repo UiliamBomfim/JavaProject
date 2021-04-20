@@ -4,14 +4,14 @@ class CorRGB
     private int valorGreen;
     private int valorBlue;
     private double valorLuminosidade;
-    
+
     public static final CorRGB preto = new CorRGB(0,0,0);
     public static final CorRGB branca = new CorRGB(255,255,255);
     public static final CorRGB red = new CorRGB(255,0,0);
     public static final CorRGB green = new CorRGB(0,255,0);
     public static final CorRGB blue = new CorRGB(0,0,255);
-    
-    
+
+
     //construtor cor RGB
     CorRGB(int red, int green, int blue)
     {
@@ -47,7 +47,7 @@ class CorRGB
         this.setValorRed(x.getValorRed());
         this.setValorGreen(x.getValorGreen());
         this.setValorBlue(x.getValorBlue());
-        this.setLuminosidade(); 
+        this.setLuminosidade();
 
     }
 
@@ -57,7 +57,7 @@ class CorRGB
         return valorRed;
     }
 
-    protected void setValorRed(int valorRed) 
+    protected void setValorRed(int valorRed)
     {
         if(valorRed >= 255)
         {this.valorRed = 255;}
@@ -70,7 +70,7 @@ class CorRGB
         }
         this.setLuminosidade();
     }
-    
+
     public int getValorGreen() {
         return valorGreen;
     }
@@ -110,29 +110,29 @@ class CorRGB
     {
         return valorLuminosidade;
     }
-    
+
     private void setLuminosidade()
     {
         this.valorLuminosidade = (this.getValorRed()*0.3 + this.getValorGreen()*0.59 + this.getValorBlue()*0.11);
     }
-    
+
     public CorRGB clonar()
     {
         CorRGB clone = new CorRGB(this.getValorRed(),this.getValorGreen(),this.getValorBlue());
         return clone;
     }
-    
-    public boolean setIgualdadeCores(CorRGB x) 
+
+    public boolean setIgualdadeCores(CorRGB x)
     {
         if (this.getValorRed() == x.getValorRed() &&
-            this.getValorGreen() == x.getValorGreen() &&
-            this.getValorBlue() == x.getValorBlue()) 
+                this.getValorGreen() == x.getValorGreen() &&
+                this.getValorBlue() == x.getValorBlue())
         {return true;}
         else
         {return false;}
     }
-    
-     private String conversorHexadecimal(int valor) {
+
+    private String conversorHexadecimal(int valor) {
 
         int dezenaHexa;
         int unidadeHexa;
@@ -164,23 +164,23 @@ class CorRGB
         }
         return dezenaHexaStr + unidadeHexaStr;
     }
-    
+
     public String corRGBHexadecimal(){
         String r= "RGB em Hexa: #";
         r += this.conversorHexadecimal(getValorRed()) +
-        this.conversorHexadecimal(getValorGreen())+
-        this.conversorHexadecimal(getValorBlue());
+                this.conversorHexadecimal(getValorGreen())+
+                this.conversorHexadecimal(getValorBlue());
 
         return r;
     }
-    
+
     public void clarear(float percentual)
     {
         setValorRed(getValorRed() + (int)(getValorRed()*percentual));
         setValorGreen(getValorGreen() + (int)(getValorGreen()*percentual));
         setValorBlue(getValorBlue() + (int)(getValorBlue()*percentual));
     }
-    
+
     public void escurecer(float percentual)
     {
         setValorRed(getValorRed() - (int)(getValorRed()*percentual));
@@ -198,8 +198,8 @@ class CorRGB
         return corCinza;
     }
 
-    
-    
+
+
     @Override
     public String toString(){
         String s = "";
@@ -214,4 +214,3 @@ class CorRGB
         return s;
     }
 }
-
