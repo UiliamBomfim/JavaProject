@@ -187,14 +187,15 @@ class CorRGB
         setValorGreen(getValorGreen() - (int)(getValorGreen()*percentual));
         setValorBlue(getValorBlue() - (int)(getValorBlue()*percentual));
     }
-    
-    public String corCinza()
+
+    public CorRGB corCinza()
     {
-        int x = (int) (getValorRed() * 0.3+ getValorGreen()*0.59+ getValorBlue()*0.11);
+        int x = (int) this.getLuminosidade();
 
 
-        String r = "#"+ conversorHexadecimal(x)+ conversorHexadecimal(x)+ conversorHexadecimal(x);
-        return r;
+        CorRGB corCinza = new CorRGB(x, x, x);
+
+        return corCinza;
     }
 
     
