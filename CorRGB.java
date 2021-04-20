@@ -200,7 +200,7 @@ class CorRGB
 
 
 
-    @Override
+    
     public String toString(){
         String s = "";
 
