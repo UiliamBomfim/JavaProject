@@ -18,7 +18,17 @@ public class Imagem {
                 }
         }
 
-
+    
+    public int getLargura()
+    {
+        return this.pixels[0].length;
+    }
+    
+    public int getAltura()
+    {
+        return this.pixels.length;
+    }
+    
     public CorRGB getPixel(int x, int y)
     {
         return this.pixels[x][y];
@@ -78,6 +88,59 @@ public class Imagem {
           {
               System.out.println("sao diferentes");
           }
+    }
+    
+    public void rotacionar()
+    {
+        CorRGB[][] pixelsAuxiliar = new CorRGB[this.pixels[0].length][this.pixels.length];
+        int alturaAuxiliar = this.getLargura();
+        int larguraAuxiliar = this.getAltura(); 
+        int cont1Largura, cont1Altura, cont2Largura, cont2Altura;
+        for(cont1Altura = 0, cont2Largura = this.getAltura() - 1;cont1Altura < this.getAltura();cont1Altura++,cont2Largura--)
+        {
+            for(cont1Largura = 0, cont2Altura = 0;cont1Largura < this.getLargura();cont1Largura++,cont2Altura++)
+            {
+                pixelsAuxiliar[cont2Altura][cont2Largura] = pixels[cont1Altura][cont1Largura]; 
+            }
+        }
+        this.pixels = pixelsAuxiliar;
+    }
+    
+    private boolean compararFragmentoImagem(Imagem fragmento,int inicioAltura,int inicioLargura)
+    {
+        for(int cont1 = inicioAltura,cont1frag = 0;cont1frag < fragmento.getAltura();cont1++,cont1frag++)
+            {
+                for(int cont2 = inicioLargura,cont2frag = 0;cont2frag < fragmento.getLargura();cont2++,cont2frag++)
+                {
+                    if(!this.pixels[cont1][cont2].equals(fragmento.getPixel(cont1frag,cont2frag)))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+    }
+    
+    public boolean isFragmento(Imagem outraImagem)
+    {
+        if(outraImagem.getAltura() <= this.getAltura() && outraImagem.getLargura() <= this.getLargura())
+        {
+            for(int cont = 0;cont < 4; cont++)
+            {
+                for(int correAltura = 0;correAltura + outraImagem.getAltura()<= this.getAltura();correAltura++)
+                {
+                    for(int correLargura = 0;correLargura + outraImagem.getLargura()<= this.getLargura();correLargura++)
+                    {
+                        if(compararFragmentoImagem(outraImagem,correAltura,correLargura))
+                        {
+                            return true;
+                        }
+                    }
+                }
+                outraImagem.rotacionar();
+            }
+        }
+        return false;
     }
     
 }

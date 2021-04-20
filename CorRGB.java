@@ -5,7 +5,7 @@ class CorRGB
     private int valorBlue;
     private double valorLuminosidade;
     
-    public static final CorRGB preto = new CorRGB(0,0,0);;
+    public static final CorRGB preto = new CorRGB(0,0,0);
     public static final CorRGB branca = new CorRGB(255,255,255);
     public static final CorRGB red = new CorRGB(255,0,0);
     public static final CorRGB green = new CorRGB(0,255,0);
@@ -17,7 +17,7 @@ class CorRGB
     {
         try
         {
-            if (red <= 0 || red >= 255 || green <= 0 || green >= 255 || blue <= 0 || blue >= 255  )
+            if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0 || blue > 255)
 
                 throw new Exception("Número inválido");
             else {
